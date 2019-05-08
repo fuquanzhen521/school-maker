@@ -15,7 +15,7 @@ public class DatabaseConnection {
 	public static Connection getCon() {
 		try {
 			// 加载驱动程序
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			// MySQL配置时的用户名
 			String user = "root";
 			// MySQL配置时的密码
