@@ -1,4 +1,4 @@
-package daoOperation;
+package newSchool.daoOperation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import encapsulationInformation.School;
-import schoolSystem.DatabaseConnection;
+import newSchool.encapsulationInformation.School;
+import newSchool.schoolSystem.DatabaseConnection;
 
 /*
- * 作�??:付全�?
+ * 作者:付全镇
  * 类名:SchoolDAO
  * 作用:school表的增删查改操作
  * 日期:5/1
@@ -34,13 +34,13 @@ public class SchoolDAO {
 	public static List<Long> insertIntoSchool(List<School> schoolList) {
 		List<Long> schoolIdList = new ArrayList<Long>();
 		HashMap<String, School> map = new HashMap<String, School>();
-		// 查询合肥�?有学校的信息,并返回集合allSchoolList
+		// 查询合肥所有学校的信息,并返回集合allSchoolList
 		List<School> allSchoolList = selectFromSchool("合肥%");
 		for (School school : allSchoolList) {
 			long schoolId = school.getId();
 			schoolIdList.add(schoolId);
 		}
-		// 遍历allSchoolList集合,以name作为key�?,school作为values�?,存入到map集合�?
+		// 遍历allSchoolList集合,以name作为key值,school作为values值,存入到map集合中
 		for (School school : allSchoolList) {
 			String name = school.getName();
 			map.put(name, school);
@@ -56,7 +56,7 @@ public class SchoolDAO {
 	}
 
 	/*
-	 * 插入�?条信�?
+	 * 插入一条数据
 	 */
 	public static long insertIntoSchool(School school) {
 		Connection conn = null;

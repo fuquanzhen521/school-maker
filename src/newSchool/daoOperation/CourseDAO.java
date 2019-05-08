@@ -1,4 +1,4 @@
-package daoOperation;
+package newSchool.daoOperation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import encapsulationInformation.Course;
-import schoolSystem.DatabaseConnection;
+import newSchool.encapsulationInformation.Course;
+import newSchool.schoolSystem.DatabaseConnection;
 
 /*
  * 作者:付全镇

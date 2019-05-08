@@ -1,9 +1,9 @@
-package builderOperation;
+package newSchool.builderOperation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import encapsulationInformation.Course;
+import newSchool.encapsulationInformation.Course;
 
 /*
  * 作者:付全镇
@@ -15,7 +15,7 @@ import encapsulationInformation.Course;
 public class CourseBuilder {
 
 	/*
-	 * 对course数据的操作
+	 * 对course数据生成的操作
 	 */
 	public static Course build(Integer i) {
 		String name = "第" + i + "课程";
@@ -23,7 +23,7 @@ public class CourseBuilder {
 	}
 
 	/*
-	 * 批量生成course信息
+	 * 生成course数据
 	 */
 	public static List<Course> batchBuild(Integer size) {
 		List<Course> courseList = new ArrayList<Course>();

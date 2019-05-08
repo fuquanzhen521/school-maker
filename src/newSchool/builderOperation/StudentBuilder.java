@@ -1,4 +1,4 @@
-package builderOperation;
+package newSchool.builderOperation;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-import encapsulationInformation.Student;
+import newSchool.encapsulationInformation.Student;
 
 /*
  * 作者:付全镇

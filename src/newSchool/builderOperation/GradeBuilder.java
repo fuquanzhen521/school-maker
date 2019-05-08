@@ -1,9 +1,9 @@
-package builderOperation;
+package newSchool.builderOperation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import encapsulationInformation.Grade;
+import newSchool.encapsulationInformation.Grade;
 
 /*
  * 作者:付全镇

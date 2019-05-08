@@ -1,10 +1,10 @@
-package builderOperation;
+package newSchool.builderOperation;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import encapsulationInformation.Teacher;
+import newSchool.encapsulationInformation.Teacher;
 
 /*
  * 作者:付全镇

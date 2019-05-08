@@ -1,4 +1,4 @@
-package daoOperation;
+package newSchool.daoOperation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,11 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import encapsulationInformation.Student;
-import schoolSystem.DatabaseConnection;
+import newSchool.encapsulationInformation.Student;
+import newSchool.schoolSystem.DatabaseConnection;
 
 /*
- * 作�??:付全�?
+ * 作者:付全镇
  * 类名:StudentDAO
  * 作用:student表的增删查改操作
  * 日期:5/1
@@ -40,7 +40,7 @@ public class StudentDAO {
 	}
 
 	/*
-	 * 插入�?条数�?
+	 * 插入一条数据
 	 */
 	public static long insertIntoStudent(Student student) {
 		Connection conn = null;
@@ -80,8 +80,7 @@ public class StudentDAO {
 		List<Student> studentList = new ArrayList<Student>();
 		try {
 			conn = DatabaseConnection.getCon();
-			String sql = " select student.* from student,class " 
-			+ "where student.cla_id=class.id and class.id=?";
+			String sql = " select student.* from student,class " + "where student.cla_id=class.id and class.id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setLong(1, classId);
 			ResultSet rs = stmt.executeQuery();

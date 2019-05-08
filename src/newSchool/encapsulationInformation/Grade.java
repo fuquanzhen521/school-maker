@@ -1,4 +1,4 @@
-package encapsulationInformation;
+package newSchool.encapsulationInformation;
 
 /*
  * 作者:付全镇

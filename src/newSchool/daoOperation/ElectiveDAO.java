@@ -1,4 +1,4 @@
-package daoOperation;
+package newSchool.daoOperation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import encapsulationInformation.Elective;
-import schoolSystem.DatabaseConnection;
+import newSchool.encapsulationInformation.Elective;
+import newSchool.schoolSystem.DatabaseConnection;
 
 /*
- * 作�??:付全�?
+ * 作者:付全镇
  * 类名:ElectiveDAO
  * 作用:elective表的增删查改操作
  * 日期:5/1
@@ -51,8 +51,7 @@ public class ElectiveDAO {
 		Connection conn = null;
 		try {
 			conn = DatabaseConnection.getCon();
-			String sql = "select elective.* from elective,student " 
-			           + "where elective.sid=student.id and student.id=?";
+			String sql = "select elective.* from elective,student " + "where elective.sid=student.id and student.id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setLong(1, studentId);
 			ResultSet rs = stmt.executeQuery();

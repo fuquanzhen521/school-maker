@@ -1,11 +1,11 @@
-package builderOperation;
+package newSchool.builderOperation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import encapsulationInformation.Elective;
-import encapsulationInformation.Teacher;
+import newSchool.encapsulationInformation.Elective;
+import newSchool.encapsulationInformation.Teacher;
 
 /*
  * 作者:付全镇
@@ -16,7 +16,7 @@ import encapsulationInformation.Teacher;
 public class ElectiveBuilder {
 
 	/*
-	 * 生成elective信息
+	 * 生成elective数据
 	 */
 	public static List<Elective> batchBuild(List<Elective> electivesList, List<Teacher> teacherList, long studentId) {
 		List<Elective> addMoreElectiveList = new ArrayList<Elective>();

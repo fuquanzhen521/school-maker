@@ -1,4 +1,4 @@
-package schoolSystem;
+package newSchool.schoolSystem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

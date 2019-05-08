@@ -1,4 +1,4 @@
-package encapsulationInformation;
+package newSchool.encapsulationInformation;
 
 import java.sql.Date;
 
