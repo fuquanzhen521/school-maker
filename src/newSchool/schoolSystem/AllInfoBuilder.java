@@ -27,15 +27,16 @@ import encapsulationInformation.Student;
 import encapsulationInformation.Teacher;
 
 /*
- * 作者:付全镇
- * 类名:AllInfoBuilder
- * 作用:插入数据
- * 日期:5/1
+ * 浣滆��:浠樺叏闀�
+ * 绫诲悕:AllInfoBuilder
+ * 浣滅敤:鎻掑叆鏁版嵁
+ * 鏃ユ湡:5/1
  */
 public class AllInfoBuilder {
 	public static void main(String args[]) throws SQLException {
+		
 		// generate school
-		List<School> schoolList = SchoolBuilder.batchBuild("合肥", 100);
+		List<School> schoolList = SchoolBuilder.batchBuild("鍚堣偉", 100);
 		List<Long> schoolIdList = SchoolDAO.insertIntoSchool(schoolList);
 		// generate grade
 		List<Grade> gradeList = GradeBuilder.batchBuild(4);
@@ -54,41 +55,41 @@ public class AllInfoBuilder {
 			f++;
 			for (long gradeId : gradeIdList) {
 				q++;
-				// 获得当前学校和年级的班级信息
+				// 鑾峰緱褰撳墠瀛︽牎鍜屽勾绾х殑鐝骇淇℃伅
 				List<ClassInformation> allClassList = ClassDAO.selectFromClass(schoolId, gradeId);
-				// 以班级姓名作为key值,班级信息作为values值,存入map集合中
+				// 浠ョ彮绾у鍚嶄綔涓簁ey鍊�,鐝骇淇℃伅浣滀负values鍊�,瀛樺叆map闆嗗悎涓�
 				for (ClassInformation classInformation : allClassList) {
 					String name = classInformation.getName();
 					map.put(name, classInformation);
 				}
 				for (int i = 1; i <= 25; i++) {
-					String className = i + "班";
+					String className = i + "鐝�";
 					ClassInformation classInfo = new ClassInformation(className, schoolId, gradeId);
 					long classId = ClassDAO.insertIntoClass(map, classInfo);
 					// generate student
-					// 查询当前班级下数据库中已经存在的所有学生的id
+					// 鏌ヨ褰撳墠鐝骇涓嬫暟鎹簱涓凡缁忓瓨鍦ㄧ殑鎵�鏈夊鐢熺殑id
 					List<Student> studentsList = StudentDAO.selectFromStudent(classId);
 					List<Student> studentList = StudentBuilder.batchBuild(studentsList, classId, schoolId, gradeId);
 					List<Long> studentIdList = StudentDAO.insertIntoStudent(studentList);
 					// generate elective
 					List<Long> allStudentIdList = new ArrayList<Long>();
-					// 遍历studentsList的值,并取出它的id值,存入allStudentIdList集合中
+					// 閬嶅巻studentsList鐨勫��,骞跺彇鍑哄畠鐨刬d鍊�,瀛樺叆allStudentIdList闆嗗悎涓�
 					for (Student student : studentsList) {
 						long studentId = student.getId();
 						allStudentIdList.add(studentId);
 					}
-					// 把studentIdList集合中的元素存入到allStudentIdList集合中,这样就获得了一个班所有学生的id
+					// 鎶妔tudentIdList闆嗗悎涓殑鍏冪礌瀛樺叆鍒癮llStudentIdList闆嗗悎涓�,杩欐牱灏辫幏寰椾簡涓�涓彮鎵�鏈夊鐢熺殑id
 					for (long studentId : studentIdList) {
 						allStudentIdList.add(studentId);
 					}
 					int z = 0;
 					for (long studentId : allStudentIdList) {
 						z++;
-						// 查询当前学生id下学生的选课信息
+						// 鏌ヨ褰撳墠瀛︾敓id涓嬪鐢熺殑閫夎淇℃伅
 						List<Elective> electivesList = ElectiveDAO.selectFromElective(studentId);
 						List<Elective> electiveList = ElectiveBuilder.batchBuild(electivesList, teacherList, studentId);
 						ElectiveDAO.insertIntoElective(electiveList);
-						System.out.println("第" + f + "中学" + "第" + q + "年级" + i + "班" + "第" + z + "个学生的信息");
+						System.out.println("绗�" + f + "涓" + "绗�" + q + "骞寸骇" + i + "鐝�" + "绗�" + z + "涓鐢熺殑淇℃伅");
 					}
 				}
 			}
