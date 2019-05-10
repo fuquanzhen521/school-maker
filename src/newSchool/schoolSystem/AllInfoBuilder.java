@@ -47,7 +47,6 @@ public class AllInfoBuilder {
 		List<Teacher> teachersList = TeacherBuilder.batchBuild(courseIdList);
 		List<Teacher> teacherList = TeacherDAO.insertIntoTeacher(teachersList);
 		// generate class
-		HashMap<String, ClassInformation> map = new HashMap<String, ClassInformation>();
 		int f = 0;
 		int q = 0;
 		for (long schoolId : schoolIdList) {
@@ -57,6 +56,7 @@ public class AllInfoBuilder {
 				// 获得当前学校和年级的班级信息
 				List<ClassInformation> allClassList = ClassDAO.selectFromClass(schoolId, gradeId);
 				// 以班级姓名作为key值,班级信息作为values值,存入map集合中
+				HashMap<String, ClassInformation> map = new HashMap<String, ClassInformation>();
 				for (ClassInformation classInformation : allClassList) {
 					String name = classInformation.getName();
 					map.put(name, classInformation);
@@ -85,7 +85,8 @@ public class AllInfoBuilder {
 						z++;
 						// 查询当前学生id下学生的选课信息
 						List<Elective> electiveSelectList = ElectiveDAO.selectFromElective(studentId);
-						List<Elective> electiveList = ElectiveBuilder.batchBuild(electiveSelectList, teacherList, studentId);
+						List<Elective> electiveList = ElectiveBuilder.batchBuild(electiveSelectList, teacherList,
+								studentId);
 						ElectiveDAO.insertIntoElective(electiveList);
 						System.out.println("第" + f + "中学" + "第" + q + "年级" + i + "班" + "第" + z + "个学生的信息");
 					}

@@ -29,19 +29,29 @@ public class ElectiveDAO {
 	/*
 	 * 批量插入多条数据
 	 */
-	public static void insertIntoElective(List<Elective> electiveList) throws SQLException {
-		Connection conn = DatabaseConnection.getCon();
-		String sql = "insert into schooldatabase.elective(sid,cid,tid,score)values(?,?,?,?)";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		for (Elective elective : electiveList) {
-			stmt.setLong(1, elective.getStudentId());
-			stmt.setLong(2, elective.getCourseId());
-			stmt.setLong(3, elective.getTeacherId());
-			stmt.setFloat(4, elective.getScore());
-			stmt.addBatch();
+	public static void insertIntoElective(List<Elective> electiveList) {
+		Connection conn = null;
+		try {
+			conn = DatabaseConnection.getCon();
+			String sql = "insert into schooldatabase.elective(sid,cid,tid,score)values(?,?,?,?)";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			for (Elective elective : electiveList) {
+				stmt.setLong(1, elective.getStudentId());
+				stmt.setLong(2, elective.getCourseId());
+				stmt.setLong(3, elective.getTeacherId());
+				stmt.setFloat(4, elective.getScore());
+				stmt.addBatch();
+			}
+			stmt.executeBatch();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		stmt.executeBatch();
-		conn.close();
 	}
 
 	/*
@@ -52,8 +62,7 @@ public class ElectiveDAO {
 		Connection conn = null;
 		try {
 			conn = DatabaseConnection.getCon();
-			String sql = "select elective.* from elective,student "
-			        + "where elective.sid=student.id and student.id=?";
+			String sql = "select elective.* from elective,student " + "where elective.sid=student.id and student.id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setLong(1, studentId);
 			ResultSet rs = stmt.executeQuery();
