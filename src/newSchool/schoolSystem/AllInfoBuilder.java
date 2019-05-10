@@ -67,26 +67,25 @@ public class AllInfoBuilder {
 					long classId = ClassDAO.insertIntoClass(map, classInfo);
 					// generate student
 					// 查询当前班级下数据库中已经存在的所有学生的id
-					List<Student> studentsList = StudentDAO.selectFromStudent(classId);
-					List<Student> studentList = StudentBuilder.batchBuild(studentsList, classId, schoolId, gradeId);
+					List<Student> studentSelectList = StudentDAO.selectFromStudent(classId);
+					List<Student> studentList = StudentBuilder.batchBuild(studentSelectList, classId, schoolId,
+							gradeId);
 					List<Long> studentIdList = StudentDAO.insertIntoStudent(studentList);
 					// generate elective
 					List<Long> allStudentIdList = new ArrayList<Long>();
 					// 遍历studentsList的值,并取出它的id值,存入allStudentIdList集合中
-					for (Student student : studentsList) {
+					for (Student student : studentSelectList) {
 						long studentId = student.getId();
 						allStudentIdList.add(studentId);
 					}
 					// 把studentIdList集合中的元素存入到allStudentIdList集合中,这样就获得了一个班所有学生的id
-					for (long studentId : studentIdList) {
-						allStudentIdList.add(studentId);
-					}
+					allStudentIdList.addAll(studentIdList);
 					int z = 0;
 					for (long studentId : allStudentIdList) {
 						z++;
 						// 查询当前学生id下学生的选课信息
-						List<Elective> electivesList = ElectiveDAO.selectFromElective(studentId);
-						List<Elective> electiveList = ElectiveBuilder.batchBuild(electivesList, teacherList, studentId);
+						List<Elective> electiveSelectList = ElectiveDAO.selectFromElective(studentId);
+						List<Elective> electiveList = ElectiveBuilder.batchBuild(electiveSelectList, teacherList, studentId);
 						ElectiveDAO.insertIntoElective(electiveList);
 						System.out.println("第" + f + "中学" + "第" + q + "年级" + i + "班" + "第" + z + "个学生的信息");
 					}

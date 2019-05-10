@@ -18,10 +18,10 @@ public class ElectiveBuilder {
 	/*
 	 * 生成elective数据
 	 */
-	public static List<Elective> batchBuild(List<Elective> electivesList, List<Teacher> teacherList, long studentId) {
+	public static List<Elective> batchBuild(List<Elective> electiveSelectList, List<Teacher> teacherList, long studentId) {
 		List<Elective> addMoreElectiveList = new ArrayList<Elective>();
 		List<Long> compareList = new ArrayList<Long>();
-		for (Elective elective : electivesList) {
+		for (Elective elective : electiveSelectList) {
 			long courseId = elective.getCourseId();
 			compareList.add(courseId);
 		}
@@ -29,9 +29,9 @@ public class ElectiveBuilder {
 		// 随机取4到6门课程
 		int randomCourseSize = random.nextInt(3) + 4;
 		// 判断随机取得课程数是否大于数据库中查询的课程数
-		if (randomCourseSize > electivesList.size()) {
+		if (randomCourseSize > electiveSelectList.size()) {
 			// index为还需要插入的选修课数
-			int index = randomCourseSize - electivesList.size();
+			int index = randomCourseSize - electiveSelectList.size();
 			while (addMoreElectiveList.size() < index) {
 				// 从teacherList中随机取一个数
 				int teacherIndex = random.nextInt(teacherList.size());

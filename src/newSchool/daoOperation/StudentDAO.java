@@ -80,7 +80,8 @@ public class StudentDAO {
 		List<Student> studentList = new ArrayList<Student>();
 		try {
 			conn = DatabaseConnection.getCon();
-			String sql = " select student.* from student,class " + "where student.cla_id=class.id and class.id=?";
+			String sql = " select student.* from student,class " 
+			      + "where student.cla_id=class.id and class.id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setLong(1, classId);
 			ResultSet rs = stmt.executeQuery();

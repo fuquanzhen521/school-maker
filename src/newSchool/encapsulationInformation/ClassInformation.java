@@ -53,7 +53,4 @@ public class ClassInformation {
 		this.gradeId = gradeId;
 	}
 
-	public boolean equals(ClassInformation classInfo) {
-		return this.name.equals(classInfo.getName());
-	}
 }

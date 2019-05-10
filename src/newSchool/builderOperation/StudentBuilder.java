@@ -19,7 +19,7 @@ public class StudentBuilder {
 	/*
 	 * 生成student信息
 	 */
-	public static List<Student> batchBuild(List<Student> studentsList, long classId, long schoolId, long gradeId) {
+	public static List<Student> batchBuild(List<Student> studentSelectList, long classId, long schoolId, long gradeId) {
 		List<Student> studentList = new ArrayList<Student>();
 		// 在数组x里面存入一些姓氏元素
 		String x[] = { "孙", "刘", "曹", "关", "张", "赵", "黄", "郭", "吕", "诸葛", "马", "魏", "杨", "付", "王", "吴", "任", "李", "司徒",
@@ -40,9 +40,9 @@ public class StudentBuilder {
 		Random random = new Random();
 		// 随机获得90到100个学生
 		int studentIndex = random.nextInt(10) + 90;
-		if (studentIndex > studentsList.size()) {
+		if (studentIndex > studentSelectList.size()) {
 			// index为还需要插入的学生数
-			int index = studentIndex - studentsList.size();
+			int index = studentIndex - studentSelectList.size();
 			for (int i = 0; i < index; i++) {
 				// 随机取数组x的下标值
 				int a = (int) Math.abs(x.length * Math.random());

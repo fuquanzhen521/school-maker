@@ -55,7 +55,4 @@ public class School {
 		this.eyy = eyy;
 	}
 
-	public boolean equals(School school) {
-		return this.name.equals(school.getName());
-	}
 }

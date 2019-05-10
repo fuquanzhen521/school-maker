@@ -41,6 +41,7 @@ public class ElectiveDAO {
 			stmt.addBatch();
 		}
 		stmt.executeBatch();
+		conn.close();
 	}
 
 	/*
@@ -51,7 +52,8 @@ public class ElectiveDAO {
 		Connection conn = null;
 		try {
 			conn = DatabaseConnection.getCon();
-			String sql = "select elective.* from elective,student " + "where elective.sid=student.id and student.id=?";
+			String sql = "select elective.* from elective,student "
+			        + "where elective.sid=student.id and student.id=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setLong(1, studentId);
 			ResultSet rs = stmt.executeQuery();
